@@ -1,24 +1,23 @@
-# Archery Ballistic Simulator
+# Project: Archery Ballistic Simulator
 
 ## Project Overview
-This project is a Python-based simulation that models an arrow's flight from a 70-meter distance. I created this tool to analyze how gravity and wind affect shooting accuracy.
+I developed this project to simulate an arrow's flight over a distance of **70 meters**. My goal was to investigate how **gravity** and **wind** affect the arrow's accuracy. I used Python to build a physics engine that follows official archery standards.
 
-## 1. 2D Scoring & Impact Analysis (`archery_2D.py`)
-First, I developed a 2D model to analyze the final results on the target. 
-- **Scoring System**: The program automatically calculates scores based on the distance from the target center ($10, 9, 7, 5$ points).
-- **Statistical Distribution**: By simulating 100 arrows, we can see the "spread" caused by wind and small errors in the launch angle.
-- **Visualization**: The *red dots* show where the arrows hit, and the colored circles represent a standard archery target.
+## 1. 2D Scoring Analysis (archery_2D.py)
+In this part, I focused on the final **results** of the shots on the target.
+* **Standard Settings**: I set the target height at **1.3 meters**, which is the official competition standard.
+* **Human Error Simulation**: I used `np.random.normal` to simulate 100 shots. This modeled the small variances in launch angles that happen in real life.
+* **Automatic Scoring**: The program automatically calculated the score (10, 9, 7, or 5) for each arrow based on its distance from the center.
 
-![2D Result](archery_2D_results.png)
 
-## 2. 3D Trajectory Modeling (`archery_3D.py`)
-To understand *why* the arrows land there, I built a 3D physical model to show the full flight path.
-- **Physics Engine**: I used the **Euler Method** to update the arrow's position and velocity every 0.01 seconds.
-- **Environmental Factors**: The model accounts for air resistance ($k=0.02$) and gravity ($g=9.81$).
-- **Monte Carlo Method**: I used `np.random.normal` to add random crosswind for each shot, which creates the realistic "bundle" of trajectories you see in the plot.
-- **Waypoint Tracking**: The black dots on the paths show the arrow's movement and deceleration over time.
 
-![3D Result](archery_3D_paths.png)
+## 2. 3D Trajectory Modeling (archery_3D.py)
+In this part, I focused on the **process** of the flight in a 3D environment.
+* **Physics Logic**: The model updated the arrow's position every 0.01 seconds. It accounted for both **Gravity** and **Air Resistance** ($k=0.02$).
+* **Wind Resistance**: I implemented a "drag-based" wind model. It showed how crosswinds pulled the arrow away from the center line during its flight.
+* **The Blue Cross (Verification)**: I added a **blue cross** at 70 meters to act as a "perfect" target. This allowed me to verify that my 3D flight paths were accurate and hit the target at the correct height.
+
+
 
 ## Conclusion
-This project helped me learn how to turn physics equations into a working Python program. It shows that even small environmental changes can lead to different scores in a professional 70m archery match.
+This project demonstrated my ability to turn physics theory into a working simulation. I successfully maintained **consistency** between the 2D scoring model and the 3D trajectory model. The results showed that environmental wind is the biggest challenge for long-distance accuracy.
